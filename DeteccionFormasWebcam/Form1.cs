@@ -164,7 +164,7 @@ namespace DeteccionFormasWebcam
 
             try
             {
-                var temp = imgInput.SmoothGaussian(5).Convert<Gray, byte>().ThresholdBinaryInv(new Gray(128), new Gray(128));
+                var temp = imgInput.SmoothGaussian(1).Convert<Gray, byte>().ThresholdBinaryInv(new Gray(128), new Gray(128));
 
                 VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
                 Mat m = new Mat();
@@ -225,6 +225,7 @@ namespace DeteccionFormasWebcam
                     }
 
                     pictureBox2.Image = imgInput.Bitmap;
+                    pictureBox3.Image = temp.Bitmap;
                 }
             }
             catch (Exception ex)
