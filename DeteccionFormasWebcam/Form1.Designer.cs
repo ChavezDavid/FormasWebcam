@@ -64,14 +64,14 @@
             // iniciarToolStripMenuItem
             // 
             this.iniciarToolStripMenuItem.Name = "iniciarToolStripMenuItem";
-            this.iniciarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iniciarToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.iniciarToolStripMenuItem.Text = "Iniciar";
             this.iniciarToolStripMenuItem.Click += new System.EventHandler(this.iniciarToolStripMenuItem_Click);
             // 
             // detenerToolStripMenuItem
             // 
             this.detenerToolStripMenuItem.Name = "detenerToolStripMenuItem";
-            this.detenerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.detenerToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.detenerToolStripMenuItem.Text = "Detener";
             this.detenerToolStripMenuItem.Click += new System.EventHandler(this.detenerToolStripMenuItem_Click);
             // 
@@ -86,7 +86,7 @@
             // iniciarToolStripMenuItem1
             // 
             this.iniciarToolStripMenuItem1.Name = "iniciarToolStripMenuItem1";
-            this.iniciarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.iniciarToolStripMenuItem1.Size = new System.Drawing.Size(106, 22);
             this.iniciarToolStripMenuItem1.Text = "Iniciar";
             this.iniciarToolStripMenuItem1.Click += new System.EventHandler(this.iniciarToolStripMenuItem1_Click);
             // 
@@ -95,6 +95,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(13, 28);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(380, 410);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -103,6 +104,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(399, 28);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(389, 410);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 

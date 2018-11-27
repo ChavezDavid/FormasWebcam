@@ -19,7 +19,7 @@ namespace DeteccionFormasWebcam
     public partial class Form1 : Form
     {
         VideoCapture capture;
-        Image<Bgr, byte> imgInput;
+        Image<Gray, byte> imgInput;
 
         public Form1()
         {
@@ -55,8 +55,8 @@ namespace DeteccionFormasWebcam
             {
                 Mat m = new Mat();
                 capture.Retrieve(m);
-                pictureBox1.Image = m.ToImage<Bgr, byte>().Bitmap;
-                imgInput = new Image<Bgr, byte>(m.ToImage<Bgr, byte>().Bitmap);
+                pictureBox1.Image = m.ToImage<Gray, byte>().Bitmap;
+                imgInput = new Image<Gray, byte>(m.ToImage<Gray, byte>().Bitmap);
 
                 if (capture == null)
                 {
@@ -164,7 +164,7 @@ namespace DeteccionFormasWebcam
 
             try
             {
-                var temp = imgInput.SmoothGaussian(3).Convert<Gray, byte>().ThresholdBinaryInv(new Gray(230), new Gray(255));
+                var temp = imgInput.SmoothGaussian(31).Convert<Gray, byte>().ThresholdBinary(new Gray(230), new Gray(255));
 
                 VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
                 Mat m = new Mat();
@@ -177,7 +177,7 @@ namespace DeteccionFormasWebcam
                     VectorOfPoint approx = new VectorOfPoint();
                     CvInvoke.ApproxPolyDP(contours[i], approx, 0.04 * perimeter, true);
 
-                    CvInvoke.DrawContours(imgInput, contours, i, new MCvScalar(0, 0, 255), 2);
+                    CvInvoke.DrawContours(temp, contours, i, new MCvScalar(0, 0, 255), 2);
 
                     var moments = CvInvoke.Moments(contours[i]);
                     int x = (int)(moments.M10 / moments.M00);
@@ -185,7 +185,7 @@ namespace DeteccionFormasWebcam
 
                     if (approx.Size == 3)
                     {
-                        CvInvoke.PutText(imgInput, "Triangulo", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
+                        CvInvoke.PutText(temp, "Triangulo", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
                     }
 
                     if (approx.Size == 4)
@@ -196,32 +196,32 @@ namespace DeteccionFormasWebcam
 
                         if (ar >= 0.95 && ar <= 1.05)
                         {
-                            CvInvoke.PutText(imgInput, "Cuadrado", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
+                            CvInvoke.PutText(temp, "Cuadrado", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
                         }
                         else
                         {
-                            CvInvoke.PutText(imgInput, "Rectangulo", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
+                            CvInvoke.PutText(temp, "Rectangulo", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
                         }
                     }
 
                     if (approx.Size == 5)
                     {
-                        CvInvoke.PutText(imgInput, "Pentagono", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
+                        CvInvoke.PutText(temp, "Pentagono", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
                     }
 
                     if (approx.Size == 6)
                     {
-                        CvInvoke.PutText(imgInput, "Hexagono", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
+                        CvInvoke.PutText(temp, "Hexagono", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
                     }
 
                     if (approx.Size == 7)
                     {
-                        CvInvoke.PutText(imgInput, "Heptagono", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
+                        CvInvoke.PutText(temp, "Heptagono", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
                     }
 
                     if (approx.Size > 7)
                     {
-                        CvInvoke.PutText(imgInput, "Circulo", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
+                        CvInvoke.PutText(temp, "Circulo", new Point(x, y), FontFace.HersheySimplex, 0.5, new MCvScalar(0, 0, 255), 2);
                     }
 
                     pictureBox2.Image = imgInput.Bitmap;
